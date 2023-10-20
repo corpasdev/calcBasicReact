@@ -8,6 +8,11 @@ function App() {
   const DIGITOS = [1,2,3,4,5,6,7,8,9,0];
   const OPERACIONES = ['+', '-', '×', '÷', '^']
 
+  let exp = valueExp;
+  let op = "";
+  let operando1 = "";
+  let operando2 = "";
+
   const setExpresion = (value)=> {
     setValueExp(valueExp + value);
   }
@@ -20,9 +25,59 @@ function App() {
     setValueExp(valueExp.slice(0, -1));
   }
 
-  const getResult = () => {
-    alert("Resultado!")
+  const getOperation = (exp) => {
+    let countOp = 0;
+    let i = 0;
+
+    while(countOp < 2) {
+      if(OPERACIONES.includes(exp[0]) && i != 0) {
+        if(countOp == 0) {
+          op = exp[0];
+          exp = exp.slice(1);
+        }
+
+        countOp++;
+      }
+ 
+      if(countOp == 0) {
+        operando1 += exp[i];
+        exp = exp.slice(1);
+      } else {
+        if(countOp < 2) {
+          operando2 += exp[i];
+          exp = exp.slice(1);
+        }
+      }
+
+      i++;
+    }
+
+    return (countOp != 0);
   }
+
+  const cacularOp = (getOperation) => {
+
+    let resultado;
+    while(getOperation(exp)) {
+      a = parseFloat(operando1);
+      b = parseFloat(operando2);
+
+      if(Number.isInteger(a)) {
+        a = parseInt(a);
+      }
+
+      if(Number.isInteger(a)) {
+        b = parseInt(b);
+      }
+
+      resultado = operar(a, op, b);
+
+      exp = resultado + exp;
+    }
+
+    setValueExp(exp);
+  }
+
 
   const operar = (a, ope, b) => {
     switch(ope) {
@@ -55,7 +110,7 @@ function App() {
           <Button fns={{setExpresion}} value={"."}/>
           <Button fns={{clearEnd}} value={"D"}/>
           <Button fns={{clear}} value={"C"}/>
-          <Button fns={{getResult}} value={"="}/>
+          <Button fns={{getOperation, cacularOp}} value={"="}/>
         </div>
         <div className="flex flex-col gap-4">
           {
