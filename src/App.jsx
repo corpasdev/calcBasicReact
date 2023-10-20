@@ -15,24 +15,28 @@ function App() {
     setValueExp("");
   }
 
+  const clearEnd = () => {
+    setValueExp(valueExp.slice(0, -1));
+  }
+
   return (
     <main className="">
-      <input value={valueExp} placeholder="0" className="w-full text-end" type="text" readOnly/>
-      <hr className="mb-3"/>
+      <input value={valueExp} placeholder="0" className="mb-6 py-2 rounded border-gray-200 border-2 pr-2 text-2xl w-full font-bold text-end" type="text" readOnly/>
       <div className="flex gap-12">
-        <div className="grid w-56 grid-rows-4 grid-cols-4 gap-4">
+        <div className="grid w-56 grid-cols-3 gap-4">
           {
             DIGITOS.map((digit, i)=> {
-              return <Button fn={setExpresion} key={i} value={digit}/>
+              return <Button fns={{setExpresion}} key={i} value={digit}/>
             })
           }
-          <Button fn={setExpresion} value={"."}/>
-          <Button fn={setExpresion} value={"D"}/>
+          <Button fns={{setExpresion}} value={"."}/>
+          <Button fns={{clearEnd}} value={"D"}/>
+          <Button fns={{clear}} value={"C"}/>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           {
             OPERACIONES.map((ope, i)=> {
-              return <Button fn={setExpresion} key={i} value={ope}/>
+              return <Button fns={{setExpresion}} key={i} value={ope}/>
             })
           }
         </div>
