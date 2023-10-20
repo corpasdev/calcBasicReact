@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "./components/Button"
-import { sumar, restar, multiplicar, dividir } from "./models/Operacion";
+import { sumar, restar, multiplicar, dividir, } from "./models/Operacion";
 
 function App() {
 
@@ -22,6 +22,24 @@ function App() {
 
   const getResult = () => {
     alert("Resultado!")
+  }
+
+  const operar = (a, ope, b) => {
+    switch(ope) {
+      case '+': 
+        sumar(a, b);
+        break;
+      case '-':
+        restar(a, b);
+        break;
+      case '×': 
+        multiplicar(a, b);
+        break;
+      case '÷':
+        dividir(a, b);
+      default:
+
+    }
   }
 
   return (
