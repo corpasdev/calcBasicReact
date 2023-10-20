@@ -25,7 +25,7 @@ export const Button = ({value, fns}) => {
 
     switch(value) {
         case 'C': 
-            styleAdd =  "col-span-2 bg-blue-900";
+            styleAdd =  "col-span-2 bg-blue-500";
             break;
         case 'D': 
             styleAdd = "bg-red-500";
