@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Button } from "./components/Button"
+import { sumar, restar, multiplicar, dividir } from "./models/Operacion";
 
 function App() {
 
