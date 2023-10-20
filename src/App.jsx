@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "./components/Button"
-import { sumar, restar, multiplicar, dividir, } from "./models/Operacion";
+import { sumar, restar, multiplicar, dividir, potenciar} from "./models/Operacion";
 
 function App() {
 
@@ -38,7 +38,7 @@ function App() {
       case '÷':
         dividir(a, b);
       default:
-
+        potenciar(a, b);
     }
   }
 
