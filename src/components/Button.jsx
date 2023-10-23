@@ -1,6 +1,6 @@
 
 export const Button = ({value, fns}) => {
-    const {setExpresion, clear, clearEnd, getResult, getOperation, cacularOp} = fns;
+    const {setExpresion, clear, clearEnd,validarExp} = fns;
 
     const handleFunction = (value) => {
         switch(value) {
@@ -11,7 +11,7 @@ export const Button = ({value, fns}) => {
                 clear();
                 break;
             case '=':
-                cacularOp(getOperation);
+                validarExp();
                 break;
             default:
                 setExpresion(value);
