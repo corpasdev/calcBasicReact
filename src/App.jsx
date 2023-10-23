@@ -50,7 +50,10 @@ const getOperacion  = (exp) => {
     exp = exp.slice(1);
     b += exp[0];
     exp = exp.slice(1);
-    while(!OPERACIONES.includes(exp[0])){
+
+    if(exp.length == 0) return [a, op, b, exp];
+
+    while(!OPERACIONES.includes(exp[0]) || !(exp.length == 0)){
         b += exp[0];
         exp = exp.slice(1);
     }
@@ -97,12 +100,9 @@ const validarExp = () => {
 
     const SIGNOS = ['+', '-'];
 
-    if(exp[0] == '×') {
-      alert("Pasó la validación");
-      setValueExp("Math Error");
-    } else {
-      alert("No es igual!")
-    }
+    if(OPERACIONES.includes(exp[0]) && !SIGNOS.includes(exp[0])) {
+      return setValueExp("Math Error");
+    } 
     
     
     while(exp.length > 0){
@@ -127,8 +127,6 @@ const validarExp = () => {
             exp = exp.slice(2);
         }
     }
-
-    alert("Pasó la validación")
     
     calcular();
 }
